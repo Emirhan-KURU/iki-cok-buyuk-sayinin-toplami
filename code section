@@ -1,0 +1,171 @@
+#include <stdio.h>   
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    char x1[200],x2[200];
+    int x3gecici[200];
+    int M,i,j,l1,l2,N,S,tmp=0,x3[M];
+    // M = sonucun uzunluğu l1,l2, = dizilerin uzunlukları 
+    // tmp = elde sayisi x3 = sonuc dizisi 
+    system("COLOR F0");
+
+    printf("Birinci sayiyi giriniz:");
+    gets(x1);
+    l1=strlen(x1);
+    printf("Ikinci sayiyi giriniz:");
+    gets(x2);
+    l2=strlen(x2);
+
+    if(l1>l2){
+        N=abs(l1-l2);  
+        S=l1;        
+        printf(" ");  
+        printf("%s\n",x1);
+        for(i=0;i<=N;i++) 
+            printf(" ");
+        printf("%s",x2); 
+    }
+    else if(l1==l2){
+        N=0;
+        S=l1;
+        printf(" ");
+        printf("%s\n",x1);
+        printf(" ");
+        printf("%s",x2);}
+    else{
+        N=abs(l2-l1);
+        S=l2;
+        for(i=0;i<=N;i++) 
+        printf(" ");  
+        printf("%s\n",x1);
+        printf(" ");
+        printf("%s",x2);
+    }
+
+    printf("\n+\n");  
+    for(i=0;i<=S;i++)  
+        printf("_");
+    printf("\n");
+
+
+    for(i=0; i<l1; i++){ 
+        x1[i] = (int)x1[i];   
+        switch(x1[i]){
+            case 48: x1[i]=0; break; 
+            case 49: x1[i]=1; break; 
+            case 50: x1[i]=2; break; 
+            case 51: x1[i]=3; break; 
+            case 52: x1[i]=4; break;
+            case 53: x1[i]=5; break;
+            case 54: x1[i]=6; break;
+            case 55: x1[i]=7; break;
+            case 56: x1[i]=8; break;
+            case 57: x1[i]=9; break;
+        }
+    } 
+    for(i=0; i<l2; i++){
+        x2[i] = (int)x2[i];
+        switch(x2[i]){
+            case 48: x2[i]=0; break;
+            case 49: x2[i]=1; break;
+            case 50: x2[i]=2; break;
+            case 51: x2[i]=3; break;
+            case 52: x2[i]=4; break;
+            case 53: x2[i]=5; break;
+            case 54: x2[i]=6; break;
+            case 55: x2[i]=7; break;
+            case 56: x2[i]=8; break;
+            case 57: x2[i]=9; break;
+        }
+    }
+    
+    if(l1==l2){
+        M=l1;
+        for(i=S-1;i>=0;i--){ 
+            x3gecici[i]=x1[i]+x2[i]+tmp; 
+            if(i == 0){          
+                x3[i]= x3gecici[i]; 
+                if(x3[i]>=10)  
+                        M+=1; 
+            }
+            else if(x3gecici[i]>=10){  
+                x3[i]= x3gecici[i]-10; 
+                tmp = 1;} 
+            else if (x3gecici[i]<10){
+                x3[i]= x3gecici[i];
+                tmp=0;
+            }}}
+    
+
+    else if (l1>l2)
+    {
+        tmp=0,M=l1;
+        for(i=l1-1,j=l2-1;i>=0;i--,j--)
+        {
+            if(j >= 0){ 
+                x3gecici[i]= x1[i]+x2[j]+tmp; 
+                if(x3gecici[i]>=10){ 
+                    x3[i]= x3gecici[i]-10;
+                    tmp =1; 
+                }  
+                else{
+                    x3[i]= x3gecici[i];
+                    tmp=0;
+                }
+            }
+            else{
+                x3gecici[i]=x1[i]+tmp;
+                if(i==0){
+                    x3[i]= x3gecici[i];
+                    if(x3[i]>=10)
+                        M+=1;
+                }
+                else if(x3gecici[i]>=10)
+                {
+                    x3[i]=x3gecici[i]-10;
+                    tmp=1;
+                }
+                else if(x3gecici[i]<10){
+                    x3[i]= x3gecici[i];
+                    tmp =0;
+                }}}}  
+        
+    else if(l2>l1){
+        tmp=0,M=l2;
+        for(i=l1-1,j=l2-1;j>=0;i--,j--){
+            if(i >= 0){
+                x3gecici[j]= x1[i]+x2[j]+tmp;
+                if(x3gecici[j]>=10){
+                    x3[j]= x3gecici[j]-10;
+                    tmp =1;
+                }
+                else{
+                    x3[j]= x3gecici[j];
+                    tmp=0;
+                }}
+            else{
+                x3gecici[j]=x2[j]+tmp;
+                if(j==0){
+                    x3[j]= x3gecici[j];
+                    if(x3[j]>=10)
+                        M+=1;
+                }
+                else if(x3gecici[j]>=10)
+                {
+                    x3[j]=x3gecici[j]-10;
+                    tmp=1;
+                }
+                else if(x3gecici[j]<10){
+                    x3[j]= x3gecici[j];
+                    tmp =0;
+                }}}}
+
+    if(M==S)  
+        printf(" ");
+    for(i=0;i<S;i++) 
+        printf("%d",x3[i]);
+    return 0;
+}
